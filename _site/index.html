@@ -1,24 +1,340 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>
-            Home
-        </title>
-        <link rel="stylesheet" href="/assets/css/styles.css">
-    </head>
-    <body>
-        <nav>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>dejin的博客</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/github-style.css">
+  <link rel="icon" href="/assets/images/touxiang.jpg" type="image/jpeg">
+  <link rel="shortcut icon" href="/assets/images/touxiang.jpg" type="image/jpeg">
+  
+  <!-- 添加 MathJax 支持 -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <!-- 添加代码高亮支持 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <!-- GitHub样式页面交互脚本 -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 分类标签切换
+    const categoryTabs = document.querySelectorAll('.category-tab');
     
-      <a href="/" class="current">Home</a>
+    if (categoryTabs.length > 0) {
+      categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // 移除所有active类
+          categoryTabs.forEach(t => t.classList.remove('active'));
+          
+          // 给当前点击的标签添加active类
+          this.classList.add('active');
+          
+          // 获取对应的内容ID
+          const categoryId = this.getAttribute('data-category');
+          
+          // 隐藏所有内容
+          document.querySelectorAll('.category-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          // 显示对应内容
+          document.getElementById(categoryId + '-content').classList.add('active');
+        });
+      });
+    }
+  });
+  </script>
+</head>
+<body class="site-container dark-theme">
+  <header class="site-header">
+    <header class="navbar">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-logo">
+      <img src="/assets/images/touxiang.jpg" alt="dejin" class="navbar-logo-img">
+      <span>dejin的博客</span>
+    </a>
+  </div>
+  <nav class="navbar-menu">
     
-      <a href="/about.html">About</a>
+      <a href="/" class="navbar-item active">
+        首页
+      </a>
     
-      <a href="/blog.html">Blog</a>
+      <a href="/blog.html" class="navbar-item">
+        Blog
+      </a>
     
-      <a href="/staff.html">Staff</a>
+      <a href="/staff.html" class="navbar-item">
+        dejin
+      </a>
     
   </nav>
-        <h1>hello world! </h1>
-    </body>
+</header>
+  </header>
+  <main class="site-main">
+    <div class="github-style-container">
+  <div class="hero-background"></div>
+  
+  <!-- 主横幅区域 -->
+  <section class="hero-section">
+    <div class="hero-title-container">
+      <h1>构建和运行你的算法学习之旅</h1>
+      <p>dejin的博客是一个协作平台，帮助你系统学习算法与数据结构，提升编程竞争力</p>
+    
+      <div class="hero-buttons">
+        <form class="email-signup">
+          <input type="email" placeholder="输入您的邮箱">
+          <button class="btn-signup">免费注册</button>
+        </form>
+        <a href="/blog" class="btn-try">开始学习</a>
+      </div>
+    </div>
+    
+    <div class="hero-content">
+      <div class="code-editor">
+        <div class="code-header">
+          <span class="filename">algorithm-demo.js</span>
+        </div>
+        <div class="code-content">
+          <pre><code><span class="keyword">function</span> <span class="function">quickSort</span>(<span class="property">array</span>) {
+  <span class="keyword">if</span> (<span class="property">array</span>.<span class="property">length</span> <= <span class="number">1</span>) {
+    <span class="keyword">return</span> <span class="property">array</span>;
+  }
+  
+  <span class="keyword">const</span> <span class="property">pivot</span> = <span class="property">array</span>[<span class="number">0</span>];
+  <span class="keyword">const</span> <span class="property">left</span> = [];
+  <span class="keyword">const</span> <span class="property">right</span> = [];
+  
+  <span class="keyword">for</span> (<span class="keyword">let</span> <span class="property">i</span> = <span class="number">1</span>; <span class="property">i</span> < <span class="property">array</span>.<span class="property">length</span>; <span class="property">i</span>++) {
+    <span class="keyword">if</span> (<span class="property">array</span>[<span class="property">i</span>] < <span class="property">pivot</span>) {
+      <span class="property">left</span>.<span class="function">push</span>(<span class="property">array</span>[<span class="property">i</span>]);
+    } <span class="keyword">else</span> {
+      <span class="property">right</span>.<span class="function">push</span>(<span class="property">array</span>[<span class="property">i</span>]);
+    }
+  }
+  
+  <span class="keyword">return</span> [...<span class="function">quickSort</span>(<span class="property">left</span>), <span class="property">pivot</span>, ...<span class="function">quickSort</span>(<span class="property">right</span>)];
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 特性展示区域 -->
+  <section class="features-section">
+    <div class="section-header">
+      <h2>平台特性</h2>
+    </div>
+    
+    <div class="feature-cards">
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#0366d6" d="M3 3h18v18H3V3zm16 16V5H5v14h14zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z"></path></svg>
+        </div>
+        <h3>算法基础</h3>
+        <p>从基础数据结构到经典算法，循序渐进的学习路径</p>
+        <a href="/blog#basic" class="feature-link">探索基础 →</a>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#0366d6" d="M13.22 19.03a.75.75 0 001.06 0l6.25-6.25a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 10-1.06 1.06l4.97 4.97H3.75a.75.75 0 000 1.5h14.44l-4.97 4.97a.75.75 0 000 1.06z"></path></svg>
+        </div>
+        <h3>实战应用</h3>
+        <p>结合实际案例，深入理解算法的实际应用场景</p>
+        <a href="/blog#advanced" class="feature-link">查看实例 →</a>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="#0366d6" d="M17.28 7.78a.75.75 0 00-1.06-1.06l-9.5 9.5a.75.75 0 101.06 1.06l9.5-9.5z"></path><path fill="#0366d6" d="M17.28 7.78a.75.75 0 00-1.06-1.06l-9.5 9.5a.75.75 0 101.06 1.06l9.5-9.5z"></path></svg>
+        </div>
+        <h3>解题技巧</h3>
+        <p>分享算法题解题思路和技巧，提升解题能力</p>
+        <a href="/blog#interview" class="feature-link">学习技巧 →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 文章分类部分 -->
+  <section class="categories-section">
+    <div class="section-header">
+      <h2>按类别浏览</h2>
+      <div class="category-tabs">
+        <button class="category-tab active" data-category="basic">基础知识</button>
+        <button class="category-tab" data-category="advanced">进阶算法</button>
+        <button class="category-tab" data-category="practical">实战应用</button>
+      </div>
+    </div>
+    
+    <div class="category-content active" id="basic-content">
+      <div class="category-list">
+        <a href="/blog#arrays" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9.5h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>数组与字符串</h3>
+            <p>基本数据结构操作与应用</p>
+          </div>
+        </a>
+        <a href="/blog#linkedlist" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path><path fill="#0366d6" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>链表</h3>
+            <p>链表结构与常见操作</p>
+          </div>
+        </a>
+        <a href="/blog#stack-queue" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M7.429 1.525a6.593 6.593 0 011.142 0c.036.003.108.036.137.146l.289 1.105c.147.56.55.967.997 1.189.174.086.341.183.501.29.417.278.97.423 1.53.27l1.102-.303c.11-.03.175.016.195.046.219.31.41.641.573.989.014.031.022.11-.059.19l-.815.806c-.411.406-.562.957-.53 1.456a4.588 4.588 0 010 .582c-.032.499.119 1.05.53 1.456l.815.806c.08.08.073.159.059.19a6.494 6.494 0 01-.573.99c-.02.029-.086.074-.195.045l-1.103-.303c-.559-.153-1.112-.008-1.529.27-.16.107-.327.204-.5.29-.449.222-.851.628-.998 1.189l-.289 1.105c.029.11-.101.143-.137.146a6.613 6.613 0 01-1.142 0c-.036-.003-.108-.037-.137-.146l-.289-1.105c-.147-.56-.55-.967-.997-1.189a4.502 4.502 0 01-.501-.29c-.417-.278-.97-.423-1.53-.27l-1.102.303c-.11.03-.175-.016-.195-.046a6.492 6.492 0 01-.573-.989c-.014-.031-.022-.11.059-.19l.815-.806c.411-.406.562-.957.53-1.456a4.587 4.587 0 010-.582c.032-.499-.119-1.05-.53-1.456l-.815-.806c-.08-.08-.073-.159-.059-.19a6.44 6.44 0 01.573-.99c.02-.029.086-.075.195-.045l1.103.303c.559.153 1.112.008 1.529-.27.16-.107.327-.204.5-.29.449-.222.851-.628.998-1.189l.289-1.105c.029-.11.101-.143.137-.146zM8 0c-.236 0-.47.01-.701.03-.743.065-1.29.615-1.458 1.261l-.29 1.106c-.017.066-.078.158-.211.224a5.994 5.994 0 00-.668.386c-.123.082-.233.09-.3.071L3.27 2.776c-.644-.177-1.392.02-1.82.63a7.977 7.977 0 00-.704 1.217c-.315.675-.111 1.422.363 1.891l.815.806c.05.048.098.147.088.294a6.084 6.084 0 000 .772c.01.147-.038.246-.088.294l-.815.806c-.474.469-.678 1.216-.363 1.891.2.428.436.835.704 1.218.428.609 1.176.806 1.82.63l1.103-.303c.066-.019.176-.011.299.071.213.143.436.272.668.386.133.066.194.158.212.224l.289 1.106c.169.646.715 1.196 1.458 1.26a8.094 8.094 0 001.402 0c.743-.064 1.29-.614 1.458-1.26l.29-1.106c.017-.066.078-.158.211-.224a5.98 5.98 0 00.668-.386c.123-.082.233-.09.3-.071l1.102.302c.644.177 1.392-.02 1.82-.63.268-.382.505-.789.704-1.217.315-.675.111-1.422-.364-1.891l-.814-.806c-.05-.048-.098-.147-.088-.294a6.1 6.1 0 000-.772c-.01-.147.039-.246.088-.294l.814-.806c.475-.469.679-1.216.364-1.891a7.992 7.992 0 00-.704-1.218c-.428-.609-1.176-.806-1.82-.63l-1.103.303c-.066.019-.176.011-.299-.071a5.991 5.991 0 00-.668-.386c-.133-.066-.194-.158-.212-.224L10.16 1.29C9.99.645 9.444.095 8.701.031A8.094 8.094 0 008 0zm1.5 8a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM11 8a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>栈与队列</h3>
+            <p>栈和队列的实现与应用</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="category-content" id="advanced-content">
+      <div class="category-list">
+        <a href="/blog#dynamic-programming" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>动态规划</h3>
+            <p>动态规划解题思路与技巧</p>
+          </div>
+        </a>
+        <a href="/blog#graph" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z"></path><path fill="#0366d6" d="M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>图论算法</h3>
+            <p>图的表示与常见图算法</p>
+          </div>
+        </a>
+        <a href="/blog#greedy" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9.5h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>贪心算法</h3>
+            <p>贪心策略与经典问题</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <div class="category-content" id="practical-content">
+      <div class="category-list">
+        <a href="/blog#interview" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M1.5 2.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v10.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V2.75zM1.75 1A1.75 1.75 0 000 2.75v10.5C0 14.216.784 15 1.75 15h12.5A1.75 1.75 0 0016 13.25V2.75A1.75 1.75 0 0014.25 1H1.75z"></path><path fill="#0366d6" d="M7 4.75A.75.75 0 017.75 4h4.5a.75.75 0 010 1.5h-4.5A.75.75 0 017 4.75zM7.75 10a.75.75 0 000 1.5h4.5a.75.75 0 000-1.5h-4.5zM3 4.75A.75.75 0 013.75 4h.5a.75.75 0 010 1.5h-.5A.75.75 0 013 4.75zM3.75 10a.75.75 0 000 1.5h.5a.75.75 0 000-1.5h-.5zM8 7.5c0-.28.22-.5.5-.5h3a.5.5 0 010 1h-3a.5.5 0 01-.5-.5z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>面试题解</h3>
+            <p>常见面试算法题详解</p>
+          </div>
+        </a>
+        <a href="/blog#projects" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM11.75 3a.75.75 0 00-.75.75v7.5a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75zm-8.25.75a.75.75 0 011.5 0v5.5a.75.75 0 01-1.5 0v-5.5zM8 3a.75.75 0 00-.75.75v3.5a.75.75 0 001.5 0v-3.5A.75.75 0 008 3z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>项目实践</h3>
+            <p>算法在实际项目中的应用</p>
+          </div>
+        </a>
+        <a href="/blog#optimizations" class="category-item">
+          <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="#0366d6" d="M8 16A8 8 0 108 0a8 8 0 000 16zm3.78-9.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg>
+          </div>
+          <div class="category-text">
+            <h3>性能优化</h3>
+            <p>算法优化与性能提升技巧</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 最新文章区域 -->
+  <section class="latest-posts">
+    <div class="section-header">
+      <h2>最新文章</h2>
+      <a href="/blog" class="view-all-link">查看全部 →</a>
+    </div>
+    
+    <div class="post-list">
+      
+        <div class="post-item">
+          <h3><a href="/basic/2025/05/06/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95.html">算法基础：数组与高精度</a></h3>
+          <div class="post-meta">
+            <span class="post-date">2025年05月06日</span>
+          </div>
+          <p class="post-excerpt">这是一个关于算法基础篇的讲解与实战练习
+</p>
+        </div>
+      
+        <div class="post-item">
+          <h3><a href="/advanced/2024/03/21/real-world-application.html">实战应用：使用动态规划解决背包问题</a></h3>
+          <div class="post-meta">
+            <span class="post-date">2024年03月21日</span>
+          </div>
+          <p class="post-excerpt">背包问题是动态规划中最经典的问题之一，在实际生活中有着广泛的应用。本文将介绍如何将背包问题应用到实际场景中。
+</p>
+        </div>
+      
+        <div class="post-item">
+          <h3><a href="/interview/2024/03/21/problem-solving.html">解题技巧：如何高效解决算法面试题</a></h3>
+          <div class="post-meta">
+            <span class="post-date">2024年03月21日</span>
+          </div>
+          <p class="post-excerpt">在算法面试中，除了掌握算法知识，解题技巧同样重要。本文将分享一些实用的解题技巧，帮助你更好地应对算法面试。
+</p>
+        </div>
+      
+        <div class="post-item">
+          <h3><a href="/basic/2024/03/21/algorithm-basics.html">算法基础：理解时间复杂度和空间复杂度</a></h3>
+          <div class="post-meta">
+            <span class="post-date">2024年03月21日</span>
+          </div>
+          <p class="post-excerpt">在算法学习中，理解时间复杂度和空间复杂度是至关重要的基础。本文将深入浅出地解释这两个概念，并通过实例帮助你更好地理解。
+</p>
+        </div>
+      
+    </div>
+  </section>
+
+  <!-- 底部注册区域 -->
+  <section class="signup-section">
+    <div class="signup-content">
+      <h2>立即加入算法学习社区</h2>
+      <p>无论您是初学者还是经验丰富的程序员，这里都能帮助您提升算法能力</p>
+      <div class="signup-form">
+        <input type="email" placeholder="输入您的邮箱">
+        <button class="btn-signup">开始学习</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Blog Dejin. Have a good day!</p>
+    </div>
+  </footer>
+</body>
 </html>

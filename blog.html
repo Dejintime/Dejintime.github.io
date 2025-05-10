@@ -1,14 +1,317 @@
 ---
 layout: default
-title: Blog
+title: 算法文章
 ---
-<h1>Latest Posts</h1>
+<div class="github-style-container">
+  <div class="blog-wrapper">
+    <header class="blog-header">
+      <h1>算法文章</h1>
+      <div class="blog-stats">
+        <span>共 {{ site.posts.size }} 篇文章</span>
+      </div>
+    </header>
 
-<ul>
-  {% for post in site.posts %}
-    <li>
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-      {{ post.excerpt }}
-    </li>
-  {% endfor %}
-</ul>
+    <div class="blog-filters">
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜索文章..." onkeyup="filterPosts()">
+      </div>
+      <div class="category-tags">
+        <button class="tag active" data-category="all">全部</button>
+        <button class="tag" data-category="basic">基础算法</button>
+        <button class="tag" data-category="advanced">进阶算法</button>
+        <button class="tag" data-category="interview">面试题解</button>
+      </div>
+    </div>
+
+    <div class="blog-list">
+      {% for post in site.posts %}
+        <article class="post-card" data-categories="{{ post.categories | join: ' ' }}">
+          <div class="post-card-content">
+            <div class="post-card-header">
+              <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+              <div class="post-meta">
+                <time datetime="{{ post.date | date_to_xmlschema }}">
+                  {{ post.date | date: "%Y年%m月%d日" }}
+                </time>
+                {% assign author = site.authors | where: 'short_name', post.author | first %}
+                {% if author %}
+                  <span class="author">作者：<a href="{{ author.url }}">{{ author.name }}</a></span>
+                {% endif %}
+              </div>
+            </div>
+            <div class="post-card-body">
+              <div class="post-excerpt">
+                {{ post.excerpt }}
+              </div>
+              <div class="post-footer">
+                <div class="post-tags">
+                  {% for category in post.categories %}
+                    <span class="post-tag">{{ category }}</span>
+                  {% endfor %}
+                </div>
+                <a href="{{ post.url }}" class="read-more">阅读全文 →</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.github-style-container {
+  min-height: calc(100vh - 100px);
+}
+
+.blog-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e1e4e8;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #24292e;
+}
+
+.blog-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.blog-stats {
+  color: #586069;
+  font-size: 1.1rem;
+}
+
+.blog-filters {
+  margin-bottom: 2rem;
+}
+
+.search-box {
+  margin-bottom: 1rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.8rem 1.5rem;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: #f6f8fa;
+  color: #24292e;
+  transition: all 0.3s ease;
+}
+
+.search-box input:focus {
+  outline: none;
+  border-color: #0366d6;
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.3);
+}
+
+.search-box input::placeholder {
+  color: #6a737d;
+}
+
+.category-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  background: #f6f8fa;
+  color: #24292e;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.tag:hover {
+  background: #0366d6;
+  color: white;
+  border-color: #0366d6;
+}
+
+.tag.active {
+  background: #0366d6;
+  color: white;
+  border-color: #0366d6;
+}
+
+.blog-list {
+  display: grid;
+  gap: 2rem;
+}
+
+.post-card {
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e1e4e8;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.post-card-content {
+  padding: 1.5rem;
+}
+
+.post-card-header h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.post-card-header h2 a {
+  color: #24292e;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.post-card-header h2 a:hover {
+  color: #0366d6;
+}
+
+.post-meta {
+  color: #586069;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.post-meta time {
+  margin-right: 1rem;
+}
+
+.post-meta a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.post-meta a:hover {
+  text-decoration: underline;
+}
+
+.post-excerpt {
+  color: #24292e;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e1e4e8;
+}
+
+.post-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.post-tag {
+  padding: 0.3rem 0.8rem;
+  background: #f1f8ff;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  color: #0366d6;
+  border: 1px solid #c8e1ff;
+}
+
+.read-more {
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.read-more:hover {
+  color: #044289;
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .blog-wrapper {
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .blog-header h1 {
+    font-size: 2rem;
+  }
+  
+  .post-card-content {
+    padding: 1rem;
+  }
+  
+  .post-footer {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+}
+</style>
+
+<script>
+function filterPosts() {
+  const searchInput = document.getElementById('searchInput');
+  const filter = searchInput.value.toLowerCase();
+  const posts = document.getElementsByClassName('post-card');
+  
+  for (let post of posts) {
+    const title = post.querySelector('h2').textContent.toLowerCase();
+    const excerpt = post.querySelector('.post-excerpt').textContent.toLowerCase();
+    const shouldShow = title.includes(filter) || excerpt.includes(filter);
+    post.style.display = shouldShow ? 'block' : 'none';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const tags = document.querySelectorAll('.tag');
+  
+  tags.forEach(tag => {
+    tag.addEventListener('click', function() {
+      // 移除所有active类
+      tags.forEach(t => t.classList.remove('active'));
+      
+      // 给当前点击的标签添加active类
+      this.classList.add('active');
+      
+      const category = this.getAttribute('data-category');
+      const posts = document.getElementsByClassName('post-card');
+      
+      for (let post of posts) {
+        if (category === 'all') {
+          post.style.display = 'block';
+        } else {
+          const categories = post.getAttribute('data-categories');
+          post.style.display = categories.includes(category) ? 'block' : 'none';
+        }
+      }
+    });
+  });
+});
+</script>

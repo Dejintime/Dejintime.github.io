@@ -1,14 +1,248 @@
 ---
 layout: default
 ---
-<h1>{{ page.title }}</h1>
 
-<p>
-  {{ page.date | date_to_string }}
-  {% assign author = site.authors | where: 'short_name', page.author | first %}
-  {% if author %}
-    - <a href="{{ author.url }}">{{ author.name }}</a>
-  {% endif %}
-</p>
+{% include mathjax.html %}
 
-{{ content }}
+<div class="github-style-container">
+  <div class="post-wrapper">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <div class="post-meta">
+          <time datetime="{{ page.date | date_to_xmlschema }}">
+            {{ page.date | date: "%Y年%m月%d日" }}
+          </time>
+          {% assign author = site.authors | where: 'short_name', page.author | first %}
+          {% if author %}
+            <span class="post-author">
+              作者：<a href="{{ author.url }}">{{ author.name }}</a>
+            </span>
+          {% endif %}
+        </div>
+      </header>
+    
+      <div class="post-content">
+        {{ content }}
+      </div>
+    
+      <footer class="post-footer">
+        <div class="post-categories">
+          分类：
+          {% for category in page.categories %}
+            <span class="post-category">{{ category }}</span>
+          {% endfor %}
+        </div>
+        
+        {% if page.tags.size > 0 %}
+          <div class="post-tags">
+            标签：
+            {% for tag in page.tags %}
+              <span class="post-tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <div class="post-navigation">
+          {% if page.previous.url %}
+            <a class="prev-post" href="{{ page.previous.url }}">
+              ← {{ page.previous.title }}
+            </a>
+          {% endif %}
+          
+          {% if page.next.url %}
+            <a class="next-post" href="{{ page.next.url }}">
+              {{ page.next.title }} →
+            </a>
+          {% endif %}
+        </div>
+      </footer>
+    </article>
+  </div>
+</div>
+
+<style>
+.github-style-container {
+  min-height: calc(100vh - 100px);
+}
+
+.post-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e1e4e8;
+}
+
+.post {
+  width: 100%;
+}
+
+.post-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #24292e;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.post-meta {
+  color: #586069;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post-meta time {
+  margin-right: 1rem;
+}
+
+.post-author a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.post-author a:hover {
+  text-decoration: underline;
+}
+
+.post-content {
+  color: #24292e;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.post-content h2 {
+  font-size: 1.8rem;
+  margin: 2.5rem 0 1.5rem;
+  color: #24292e;
+  font-weight: 600;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #eaecef;
+}
+
+.post-content h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1.25rem;
+  color: #24292e;
+  font-weight: 600;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content pre {
+  border-radius: 6px;
+  padding: 1rem;
+  overflow: auto;
+  margin: 1.5rem 0;
+  background-color: #f6f8fa;
+  border: 1px solid #eaecef;
+}
+
+.post-content code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9rem;
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.post-content pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #dfe2e5;
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #6a737d;
+}
+
+.post-content ul, .post-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  border: 1px solid #eaecef;
+}
+
+.post-content a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.post-footer {
+  padding-top: 2rem;
+  border-top: 1px solid #eaecef;
+  color: #586069;
+}
+
+.post-categories, .post-tags {
+  margin-bottom: 1rem;
+}
+
+.post-category, .post-tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  margin-right: 0.5rem;
+  border-radius: 2rem;
+  background: #f1f8ff;
+  font-size: 0.8rem;
+  color: #0366d6;
+  border: 1px solid #c8e1ff;
+}
+
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.prev-post, .next-post {
+  color: #0366d6;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  display: inline-block;
+}
+
+.prev-post:hover, .next-post:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .post-wrapper {
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .post-title {
+    font-size: 2rem;
+  }
+  
+  .post-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+</style>

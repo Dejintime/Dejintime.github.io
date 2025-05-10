@@ -1,14 +1,66 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>
-            {{ page.title }}
-        </title>
-        <link rel="stylesheet" href="/assets/css/styles.css">
-    </head>
-    <body>
-        {% include navigation.html%}
-        {{ content }}
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/github-style.css">
+  <link rel="icon" href="/assets/images/touxiang.jpg" type="image/jpeg">
+  <link rel="shortcut icon" href="/assets/images/touxiang.jpg" type="image/jpeg">
+  
+  <!-- 添加 MathJax 支持 -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <!-- 添加代码高亮支持 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <!-- GitHub样式页面交互脚本 -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 分类标签切换
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    
+    if (categoryTabs.length > 0) {
+      categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // 移除所有active类
+          categoryTabs.forEach(t => t.classList.remove('active'));
+          
+          // 给当前点击的标签添加active类
+          this.classList.add('active');
+          
+          // 获取对应的内容ID
+          const categoryId = this.getAttribute('data-category');
+          
+          // 隐藏所有内容
+          document.querySelectorAll('.category-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          // 显示对应内容
+          document.getElementById(categoryId + '-content').classList.add('active');
+        });
+      });
+    }
+  });
+  </script>
+</head>
+<body class="site-container dark-theme">
+  <header class="site-header">
+    {% include navigation.html %}
+  </header>
+  <main class="site-main">
+    {{ content }}
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Blog Dejin. Have a good day!</p>
+    </div>
+  </footer>
+</body>
 </html>

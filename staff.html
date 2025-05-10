@@ -1,15 +1,156 @@
 ---
 layout: default
-title: Staff
+title: 我们的团队
 ---
-<h1>Staff</h1>
 
-<ul>
-  {% for author in site.authors %}
-    <li>
-      <h2><a href="{{ author.url }}">{{ author.name }}</a></h2>
-      <h3>{{ author.position }}</h3>
-      <p>{{ author.content | markdownify }}</p>
-    </li>
-  {% endfor %}
-</ul>
+<div class="github-style-container">
+  <div class="staff-wrapper">
+    <header class="staff-header">
+      <h1>我们的团队</h1>
+      <p class="subtitle">了解算法博客背后的创作者</p>
+    </header>
+    
+    <div class="staff-grid">
+      {% for author in site.authors %}
+        <div class="staff-card" id="{{ author.short_name }}">
+          
+          <h2>{{ author.name }}</h2>
+          <p class="position">{{ author.position }}</p>
+          <div class="content">
+            {{ author.content | markdownify }}
+          </div>
+          <div class="social-links">
+            {% if author.github %}
+              <a href="https://github.com/{{ author.github }}" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>
+              </a>
+            {% endif %}
+            {% if author.twitter %}
+              <a href="https://twitter.com/{{ author.twitter }}" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-twitter"></i>
+              </a>
+            {% endif %}
+            {% if author.linkedin %}
+              <a href="https://linkedin.com/in/{{ author.linkedin }}" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<style>
+.github-style-container {
+  min-height: calc(100vh - 100px);
+}
+
+.staff-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e1e4e8;
+}
+
+.staff-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  color: #24292e;
+}
+
+.staff-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #586069;
+}
+
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.staff-card {
+  background: #ffffff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid #e1e4e8;
+}
+
+.staff-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.staff-card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  color: #24292e;
+  font-weight: 600;
+}
+
+.position {
+  color: #0366d6;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.content {
+  color: #24292e;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.social-links a {
+  color: #586069;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #0366d6;
+}
+
+@media (max-width: 768px) {
+  .staff-wrapper {
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .staff-header h1 {
+    font-size: 2rem;
+  }
+  
+  .staff-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+<!-- 添加 Font Awesome 图标库 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">

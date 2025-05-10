@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>解题技巧：如何高效解决算法面试题</title>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/github-style.css">
+  <link rel="icon" href="/assets/images/touxiang.jpg" type="image/jpeg">
+  <link rel="shortcut icon" href="/assets/images/touxiang.jpg" type="image/jpeg">
+  
+  <!-- 添加 MathJax 支持 -->
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  
+  <!-- 添加代码高亮支持 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  
+  <!-- GitHub样式页面交互脚本 -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 分类标签切换
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    
+    if (categoryTabs.length > 0) {
+      categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          // 移除所有active类
+          categoryTabs.forEach(t => t.classList.remove('active'));
+          
+          // 给当前点击的标签添加active类
+          this.classList.add('active');
+          
+          // 获取对应的内容ID
+          const categoryId = this.getAttribute('data-category');
+          
+          // 隐藏所有内容
+          document.querySelectorAll('.category-content').forEach(content => {
+            content.classList.remove('active');
+          });
+          
+          // 显示对应内容
+          document.getElementById(categoryId + '-content').classList.add('active');
+        });
+      });
+    }
+  });
+  </script>
+</head>
+<body class="site-container dark-theme">
+  <header class="site-header">
+    <header class="navbar">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-logo">
+      <img src="/assets/images/touxiang.jpg" alt="dejin" class="navbar-logo-img">
+      <span>dejin的博客</span>
+    </a>
+  </div>
+  <nav class="navbar-menu">
+    
+      <a href="/" class="navbar-item">
+        首页
+      </a>
+    
+      <a href="/blog.html" class="navbar-item">
+        Blog
+      </a>
+    
+      <a href="/staff.html" class="navbar-item">
+        dejin
+      </a>
+    
+  </nav>
+</header>
+  </header>
+  <main class="site-main">
+    <script>
+  MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script> 
+
+<div class="github-style-container">
+  <div class="post-wrapper">
+    <article class="post">
+      <header class="post-header">
+        <h1 class="post-title">解题技巧：如何高效解决算法面试题</h1>
+        <div class="post-meta">
+          <time datetime="2024-03-21T00:00:00+00:00">
+            2024年03月21日
+          </time>
+          
+          
+            <span class="post-author">
+              作者：<a href="/authors/dejin.html">Dejintime</a>
+            </span>
+          
+        </div>
+      </header>
+    
+      <div class="post-content">
+        <p>在算法面试中，除了掌握算法知识，解题技巧同样重要。本文将分享一些实用的解题技巧，帮助你更好地应对算法面试。</p>
+
+<h2 id="解题步骤">解题步骤</h2>
+
+<h3 id="1-理解问题">1. 理解问题</h3>
+
+<p>首先，确保你完全理解问题：</p>
+<ul>
+  <li>仔细阅读题目描述</li>
+  <li>明确输入和输出</li>
+  <li>考虑边界情况</li>
+  <li>提出澄清性问题</li>
+</ul>
+
+<h3 id="2-设计算法">2. 设计算法</h3>
+
+<ol>
+  <li>从简单情况开始</li>
+  <li>考虑暴力解法</li>
+  <li>寻找优化方向</li>
+  <li>选择合适的数据结构</li>
+</ol>
+
+<h3 id="3-编写代码">3. 编写代码</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">solve_problem</span><span class="p">(</span><span class="n">input_data</span><span class="p">):</span>
+    <span class="c1"># 1. 处理边界情况
+</span>    <span class="k">if</span> <span class="ow">not</span> <span class="n">input_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    
+    <span class="c1"># 2. 初始化变量
+</span>    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">input_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    
+    <span class="c1"># 3. 主要逻辑
+</span>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">input_data</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="o">&gt;</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">item</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<h2 id="常见解题模式">常见解题模式</h2>
+
+<h3 id="1-双指针技巧">1. 双指针技巧</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">two_sum_sorted</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+        <span class="n">current_sum</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">current_sum</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">current_sum</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div></div>
+
+<h3 id="2-滑动窗口">2. 滑动窗口</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">max_subarray_sum</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">window_sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    <span class="k">for</span> <span class="n">end</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+        <span class="n">window_sum</span> <span class="o">+=</span> <span class="n">arr</span><span class="p">[</span><span class="n">end</span><span class="p">]</span>
+        
+        <span class="k">if</span> <span class="n">end</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">max_sum</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">window_sum</span><span class="p">)</span>
+            <span class="n">window_sum</span> <span class="o">-=</span> <span class="n">arr</span><span class="p">[</span><span class="n">start</span><span class="p">]</span>
+            <span class="n">start</span> <span class="o">+=</span> <span class="mi">1</span>
+            
+    <span class="k">return</span> <span class="n">max_sum</span>
+</code></pre></div></div>
+
+<h2 id="面试技巧">面试技巧</h2>
+
+<ol>
+  <li><strong>沟通技巧</strong>
+    <ul>
+      <li>解释你的思路</li>
+      <li>主动讨论优化方案</li>
+      <li>接受反馈和建议</li>
+    </ul>
+  </li>
+  <li><strong>时间管理</strong>
+    <ul>
+      <li>合理分配时间</li>
+      <li>先实现基本解法</li>
+      <li>留出优化时间</li>
+    </ul>
+  </li>
+  <li><strong>代码质量</strong>
+    <ul>
+      <li>清晰的变量命名</li>
+      <li>适当的注释</li>
+      <li>处理边界情况</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="常见陷阱">常见陷阱</h2>
+
+<ol>
+  <li>没有考虑边界情况</li>
+  <li>忽略时间/空间复杂度</li>
+  <li>代码可读性差</li>
+  <li>没有测试用例</li>
+</ol>
+
+<h2 id="实战演练">实战演练</h2>
+
+<h3 id="例题最长回文子串">例题：最长回文子串</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">longest_palindrome</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">expand_around_center</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">left</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">right</span><span class="p">]:</span>
+            <span class="n">left</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">right</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span><span class="n">right</span><span class="p">]</span>
+    
+    <span class="n">result</span> <span class="o">=</span> <span class="sh">""</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+        <span class="c1"># 奇数长度
+</span>        <span class="n">odd</span> <span class="o">=</span> <span class="nf">expand_around_center</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="c1"># 偶数长度
+</span>        <span class="n">even</span> <span class="o">=</span> <span class="nf">expand_around_center</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        
+        <span class="n">result</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">odd</span><span class="p">,</span> <span class="n">even</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div></div>
+
+<h2 id="总结">总结</h2>
+
+<ol>
+  <li>掌握基本解题步骤</li>
+  <li>熟悉常见解题模式</li>
+  <li>注重代码质量</li>
+  <li>重视沟通技巧</li>
+</ol>
+
+<h2 id="练习题">练习题</h2>
+
+<ol>
+  <li>实现一个函数，判断一个字符串是否是有效的括号组合</li>
+  <li>设计一个算法，找出数组中的第K大元素</li>
+  <li>实现一个LRU缓存</li>
+</ol>
+
+<h2 id="参考资料">参考资料</h2>
+
+<ol>
+  <li>《算法导论》</li>
+  <li>《编程珠玑》</li>
+  <li>《算法设计手册》</li>
+</ol>
+
+      </div>
+    
+      <footer class="post-footer">
+        <div class="post-categories">
+          分类：
+          
+            <span class="post-category">interview</span>
+          
+        </div>
+        
+        
+        
+        <div class="post-navigation">
+          
+            <a class="prev-post" href="/basic/2024/03/21/algorithm-basics.html">
+              ← 算法基础：理解时间复杂度和空间复杂度
+            </a>
+          
+          
+          
+            <a class="next-post" href="/advanced/2024/03/21/real-world-application.html">
+              实战应用：使用动态规划解决背包问题 →
+            </a>
+          
+        </div>
+      </footer>
+    </article>
+  </div>
+</div>
+
+<style>
+.github-style-container {
+  min-height: calc(100vh - 100px);
+}
+
+.post-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e1e4e8;
+}
+
+.post {
+  width: 100%;
+}
+
+.post-header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.post-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #24292e;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.post-meta {
+  color: #586069;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.post-meta time {
+  margin-right: 1rem;
+}
+
+.post-author a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.post-author a:hover {
+  text-decoration: underline;
+}
+
+.post-content {
+  color: #24292e;
+  line-height: 1.8;
+  margin-bottom: 3rem;
+}
+
+.post-content h2 {
+  font-size: 1.8rem;
+  margin: 2.5rem 0 1.5rem;
+  color: #24292e;
+  font-weight: 600;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid #eaecef;
+}
+
+.post-content h3 {
+  font-size: 1.5rem;
+  margin: 2rem 0 1.25rem;
+  color: #24292e;
+  font-weight: 600;
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content pre {
+  border-radius: 6px;
+  padding: 1rem;
+  overflow: auto;
+  margin: 1.5rem 0;
+  background-color: #f6f8fa;
+  border: 1px solid #eaecef;
+}
+
+.post-content code {
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.9rem;
+  background-color: #f6f8fa;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+.post-content pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+.post-content blockquote {
+  border-left: 4px solid #dfe2e5;
+  padding-left: 1rem;
+  margin-left: 0;
+  color: #6a737d;
+}
+
+.post-content ul, .post-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+}
+
+.post-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 1.5rem 0;
+  border: 1px solid #eaecef;
+}
+
+.post-content a {
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.post-content a:hover {
+  text-decoration: underline;
+}
+
+.post-footer {
+  padding-top: 2rem;
+  border-top: 1px solid #eaecef;
+  color: #586069;
+}
+
+.post-categories, .post-tags {
+  margin-bottom: 1rem;
+}
+
+.post-category, .post-tag {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  margin-right: 0.5rem;
+  border-radius: 2rem;
+  background: #f1f8ff;
+  font-size: 0.8rem;
+  color: #0366d6;
+  border: 1px solid #c8e1ff;
+}
+
+.post-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.prev-post, .next-post {
+  color: #0366d6;
+  text-decoration: none;
+  margin: 0.5rem 0;
+  display: inline-block;
+}
+
+.prev-post:hover, .next-post:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .post-wrapper {
+    padding: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .post-title {
+    font-size: 2rem;
+  }
+  
+  .post-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+</style>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Blog Dejin. Have a good day!</p>
+    </div>
+  </footer>
+</body>
+</html>

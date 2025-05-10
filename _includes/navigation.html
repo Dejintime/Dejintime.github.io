@@ -1,5 +1,15 @@
-<nav>
+<header class="navbar">
+  <div class="navbar-brand">
+    <a href="/" class="navbar-logo">
+      <img src="/assets/images/touxiang.jpg" alt="dejin" class="navbar-logo-img">
+      <span>dejin的博客</span>
+    </a>
+  </div>
+  <nav class="navbar-menu">
     {% for item in site.data.navigation %}
-      <a href="{{ item.link }}"{% if page.url == item.link %} class="current"{% endif %}>{{ item.name }}</a>
+      <a href="{{ item.link }}" class="navbar-item{% if page.url == item.link %} active{% endif %}">
+        {{ item.name }}
+      </a>
     {% endfor %}
   </nav>
+</header>
