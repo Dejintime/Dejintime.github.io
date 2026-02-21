@@ -1,0 +1,26 @@
+<div class="sidebar">
+  <div class="profile-container">
+    <!-- 换头像：将你的照片重命名为 profile.jpg 放入 assets/images/ 文件夹，然后把下面 src 改为 /assets/images/profile.jpg -->
+    <img src="{{ "/assets/images/profile.jpg" | relative_url }}" alt="{{ site.author.name }}" class="profile-pic">
+    <h1 class="site-title">{{ site.author.name }}</h1>
+    <p class="site-university">{{ site.author.university }}</p>
+    <p class="site-bio">{{ site.author.bio }}</p>
+  </div>
+  
+  <nav class="nav-links">
+    {% for item in site.data.navigation %}
+      <a href="{{ item.link | relative_url }}" class="nav-link{% if page.url == item.link %} active{% endif %}">
+        {{ item.name }}
+      </a>
+    {% endfor %}
+  </nav>
+
+  <div class="social-links">
+    {% if site.author.github %}
+      <a href="https://github.com/{{ site.author.github }}" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+    {% endif %}
+    {% if site.author.email %}
+      <a href="mailto:{{ site.author.email }}" class="social-icon"><i class="fas fa-envelope"></i></a>
+    {% endif %}
+  </div>
+</div>

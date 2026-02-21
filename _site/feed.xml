@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://0.0.0.0:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://0.0.0.0:4000/" rel="alternate" type="text/html" /><updated>2026-02-21T07:02:09+00:00</updated><id>http://0.0.0.0:4000/feed.xml</id><title type="html">Dejin</title><subtitle>Yunnan University · Computer Science · M.S. Student</subtitle><author><name>Dejin</name><email>2404155822@qq.com</email></author><entry><title type="html">Vibe Coding 入门：用 AI 加速你的开发工作流</title><link href="http://0.0.0.0:4000/tools/2026/02/21/vibe-coding.html" rel="alternate" type="text/html" title="Vibe Coding 入门：用 AI 加速你的开发工作流" /><published>2026-02-21T00:00:00+00:00</published><updated>2026-02-21T00:00:00+00:00</updated><id>http://0.0.0.0:4000/tools/2026/02/21/vibe-coding</id><content type="html" xml:base="http://0.0.0.0:4000/tools/2026/02/21/vibe-coding.html"><![CDATA[<blockquote>
+  <p><strong>Vibe Coding</strong> 是一种以 AI 为核心驱动力的编程方式——你描述你的意图，AI 帮你把想法变成代码。它不是偷懒，而是让你更专注于解决问题本身，而不是被语法和样板代码拖累。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="一安装-github-copilot-cli">一、安装 GitHub Copilot CLI</h2>
+
+<p>Copilot CLI 是 GitHub Copilot 的命令行扩展，让你可以在终端中直接用自然语言提问和执行命令，是 Vibe Coding 工作流中不可或缺的利器。</p>
+
+<h3 id="前置条件">前置条件</h3>
+
+<ul>
+  <li>Node.js &gt;= 18</li>
+  <li>已订阅 GitHub Copilot（免费版或付费版均可）</li>
+</ul>
+
+<h3 id="安装步骤">安装步骤</h3>
+
+<p><strong>第一步：安装 GitHub CLI</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># macOS (Homebrew)</span>
+brew <span class="nb">install </span>gh
+
+<span class="c"># Linux (Debian/Ubuntu)</span>
+<span class="nb">sudo </span>apt <span class="nb">install </span>gh
+
+<span class="c"># Windows</span>
+winget <span class="nb">install </span>GitHub.cli
+</code></pre></div></div>
+
+<p><strong>第二步：登录并启用 Copilot 扩展</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 登录 GitHub</span>
+gh auth login
+
+<span class="c"># 安装 Copilot CLI 扩展</span>
+gh extension <span class="nb">install </span>github/gh-copilot
+</code></pre></div></div>
+
+<p><strong>第三步：验证安装</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gh copilot <span class="nt">--version</span>
+</code></pre></div></div>
+
+<h3 id="核心命令速查">核心命令速查</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>命令</th>
+      <th>用途</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gh copilot suggest "..."</code></td>
+      <td>将自然语言转换为 Shell 命令</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">gh copilot explain "..."</code></td>
+      <td>解释一条命令的含义</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>示例：</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 让 Copilot 帮你找出占用磁盘最多的目录</span>
+gh copilot suggest <span class="s2">"找出当前目录下体积最大的10个文件夹"</span>
+
+<span class="c"># 让 Copilot 解释一条你看不懂的命令</span>
+gh copilot explain <span class="s2">"find . -name '*.log' -mtime +7 -exec rm {} </span><span class="se">\;</span><span class="s2">"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="二vibe-coding-核心工具链">二、Vibe Coding 核心工具链</h2>
+
+<p>一套完整的 Vibe Coding 工作流通常由以下几类工具组成：</p>
+
+<h3 id="1-ide-内-ai-助手">1. IDE 内 AI 助手</h3>
+
+<p><strong>GitHub Copilot (VS Code)</strong></p>
+<ul>
+  <li>代码自动补全，支持上下文感知</li>
+  <li><code class="language-plaintext highlighter-rouge">Ctrl+I</code> 唤起 Inline Chat，直接用中文描述修改意图</li>
+  <li>Copilot Chat 侧边栏，适合多轮对话式开发</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code># 在编辑器中的使用技巧
+1. 写注释描述函数功能，Copilot 自动补全实现
+2. 选中代码块 → Ctrl+I → 输入 "重构这段代码，提升可读性"
+3. 在聊天框输入 "/fix" 自动修复报错
+</code></pre></div></div>
+
+<h3 id="2-ai-驱动的代码编辑器">2. AI 驱动的代码编辑器</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>工具</th>
+      <th>特点</th>
+      <th>适合场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Cursor</strong></td>
+      <td>基于 VS Code，深度集成 Claude/GPT</td>
+      <td>大规模代码重构</td>
+    </tr>
+    <tr>
+      <td><strong>Windsurf</strong></td>
+      <td>Cascade 多步骤任务执行</td>
+      <td>需要 AI 完成完整功能</td>
+    </tr>
+    <tr>
+      <td><strong>VS Code + Copilot</strong></td>
+      <td>生态完善，插件丰富</td>
+      <td>日常开发首选</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="3-终端与命令行工具">3. 终端与命令行工具</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 用 Copilot CLI 生成复杂的 Git 命令</span>
+gh copilot suggest <span class="s2">"将过去7天所有 feat 开头的 commit 合并为一个"</span>
+
+<span class="c"># 用 Copilot CLI 生成 Docker 命令</span>
+gh copilot suggest <span class="s2">"运行一个 nginx 容器，将本地 ./html 目录挂载到默认网站目录"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="三vibe-coding-实战教程">三、Vibe Coding 实战教程</h2>
+
+<h3 id="教程一从零搭建一个-jekyll-博客">教程一：从零搭建一个 Jekyll 博客</h3>
+
+<p>这个博客本身就是 Vibe Coding 的成果！以下是整个流程：</p>
+
+<p><strong>1. 描述需求，生成框架</strong></p>
+
+<p>在 Copilot Chat 中输入：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>帮我基于 Jekyll 设计一个学术风格的个人主页，
+要求左侧固定导航栏，右侧内容区，支持博客功能
+</code></pre></div></div>
+
+<p><strong>2. 逐步填充内容</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>把 index.html 中的占位符替换为真实的教育背景和研究方向
+</code></pre></div></div>
+
+<p><strong>3. 调试样式</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>导航栏在移动端显示时被内容遮挡，帮我修复这个 CSS bug
+</code></pre></div></div>
+
+<h3 id="教程二用-ai-辅助写代码注释和文档">教程二：用 AI 辅助写代码注释和文档</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 原始代码（没有注释）
+</span><span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">inf</span><span class="sh">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">}</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">pq</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>
+    <span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
+        <span class="n">d</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="nf">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">u</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+</span> <span class="n">w</span>
+                <span class="n">heapq</span><span class="p">.</span><span class="nf">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">dist</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dist</span>
+</code></pre></div></div>
+
+<p>在 VS Code 中选中这段代码，按 <code class="language-plaintext highlighter-rouge">Ctrl+I</code> 输入”为这个函数添加详细的中文文档注释”，Copilot 会自动生成：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="sh">"""</span><span class="s">
+    使用 Dijkstra 算法计算从起点到所有节点的最短距离。
+
+    Args:
+        graph: 邻接表表示的有权图，格式为 {节点: [(邻居, 边权重), ...]}
+        start: 起始节点
+
+    Returns:
+        dist: 字典，key 为节点，value 为从 start 到该节点的最短距离
+
+    Time Complexity: O((V + E) log V)
+    </span><span class="sh">"""</span>
+    <span class="bp">...</span>
+</code></pre></div></div>
+
+<h3 id="教程三ai-辅助-code-review">教程三：AI 辅助 Code Review</h3>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 让 Copilot 审查你当前的 Git 变更</span>
+git diff HEAD | gh copilot explain <span class="s2">"审查这些代码变更，找出潜在的问题"</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="四vibe-coding-的最佳实践">四、Vibe Coding 的最佳实践</h2>
+
+<h3 id="-推荐做法">✅ 推荐做法</h3>
+
+<ol>
+  <li><strong>描述意图，而非具体实现</strong>：说”帮我写一个防抖函数”而不是”帮我写<code class="language-plaintext highlighter-rouge">setTimeout</code>那个逻辑”</li>
+  <li><strong>分解任务</strong>：一次只让 AI 做一件事，便于验证和修改</li>
+  <li><strong>保持代码审查习惯</strong>：AI 生成的代码不是完美的，要亲自阅读后再提交</li>
+  <li><strong>善用上下文</strong>：在 Copilot Chat 中使用 <code class="language-plaintext highlighter-rouge">#file</code> 、<code class="language-plaintext highlighter-rouge">#codebase</code> 引用具体文件</li>
+</ol>
+
+<h3 id="-避免的做法">❌ 避免的做法</h3>
+
+<ol>
+  <li>不加理解地全盘接受 AI 的输出</li>
+  <li>将包含敏感信息的代码（密钥、密码）粘贴给 AI</li>
+  <li>完全依赖 AI，忽视自身的算法和数据结构基础</li>
+</ol>
+
+<hr />
+
+<h2 id="五总结">五、总结</h2>
+
+<p>Vibe Coding 的本质是<strong>人机协作</strong>：你负责提供方向、判断和最终决策，AI 负责填充细节、处理重复劳动。掌握好这套工作流，可以让开发效率提升数倍，同时让你有更多精力专注于真正有创造力的工作。</p>
+
+<hr />
+
+<p><em>工具链仍在快速演进，欢迎在评论区留下你的推荐。</em></p>]]></content><author><name>Dejin</name><email>2404155822@qq.com</email></author><category term="tools" /><summary type="html"><![CDATA[Vibe Coding 是一种以 AI 为核心驱动力的编程方式——你描述你的意图，AI 帮你把想法变成代码。它不是偷懒，而是让你更专注于解决问题本身，而不是被语法和样板代码拖累。]]></summary></entry></feed>

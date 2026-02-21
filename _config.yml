@@ -1,28 +1,32 @@
-collections:
-  authors:
-    output: true
+# Site settings
+title: "Dejin" 
+description: "Yunnan University · Computer Science · M.S. Student"
+url: "https://dejintime.github.io"
+baseurl: ""
+author:
+  name: "Dejin"
+  email: "2404155822@qq.com"
+  github: "Dejintime"
+  university: "Yunnan University"
+  bio: "Focused on NLP, CV and Multimodal LLMs. Passionate about AI Agents and Vibe Coding."
 
-defaults:
-  - scope:
-      path: ""
-      type: "authors"
-    values:
-      layout: "author"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-    values:
-      layout: "default"
-
+# Build settings
 markdown: kramdown
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
   input: GFM
 
+# Plugins
 plugins:
-  - jekyll-katex
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

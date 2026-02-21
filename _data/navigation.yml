@@ -1,6 +1,4 @@
-- name: 首页
+- name: About
   link: /
 - name: Blog
-  link: /blog.html
-- name: dejin
-  link: /staff.html
+  link: /blog/
