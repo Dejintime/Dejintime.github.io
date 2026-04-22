@@ -43,7 +43,12 @@ title: About Me
       <span style="color:#666; font-size:0.92rem;">利用 YOLOv7 目标检测模型对输电线路绝缘子进行缺陷识别与定位，实现对破损、闪络等缺陷类型的自动化检测，提升电网巡检效率。</span>
     </li>
   </ul>
-
+  <ul>
+    <li>
+      <strong>基于 改进YOLOv8m 模型的绝缘子缺陷检测</strong><br>
+      <span style="color:#666; font-size:0.92rem;">基于YOLOv8m模型添加GAM注意力机制，绝缘子缺陷检测在mAP50上达到92.93（提升2.1%），mAP50-95上达到了0.7399（提升了4%）。</span>
+    </li>
+  </ul>
   <h2>News</h2>
   <ul>
     {% for post in site.posts limit:5 %}
@@ -52,7 +57,6 @@ title: About Me
       新文章：<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </li>
     {% endfor %}
-    <li><strong>[2026.02]</strong> 个人主页全新上线！</li>
   </ul>
 
 </div>
