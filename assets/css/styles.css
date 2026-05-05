@@ -107,6 +107,19 @@ a:hover {
   margin: 10px 0;
 }
 
+/* 侧栏导航（顺序由 navigation.yml 的 primary / secondary 决定） */
+.sidebar-nav {
+  width: 100%;
+}
+
+.nav-section {
+  width: 100%;
+}
+
+.nav-section + .nav-section {
+  margin-top: 10px;
+}
+
 .nav-link {
   display: block;
   padding: 10px;
@@ -116,7 +129,8 @@ a:hover {
   transition: background 0.2s;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
   background-color: #e9ecef;
   color: var(--primary-color);
   text-decoration: none;
@@ -143,6 +157,8 @@ a:hover {
   flex: 1;
   padding: 60px 80px;
   max-width: 900px;
+  /* 默认 min-width:auto 会被内部大图撑满整行，导致子元素 img 的 max-width:100% 永远等于图片原始宽度 */
+  min-width: 0;
 }
 
 /* Blog List */
@@ -175,6 +191,32 @@ a:hover {
 /* Post content */
 .post-content {
   line-height: 1.85;
+  min-width: 0;
+}
+
+article.post {
+  min-width: 0;
+}
+
+/* 正文内图片：不超出文章栏宽，随屏幕缩小 */
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.25rem auto;
+}
+
+/* 固定上限（不用 min()，避免个别浏览器整句失效回退成 100%）；窄屏再放宽 */
+.post-content img.img-medium {
+  width: auto;
+  max-width: 1000px;
+  height: auto;
+}
+
+@media (max-width: 440px) {
+  .post-content img.img-medium {
+    max-width: 92%;
+  }
 }
 
 .post-content h2 {

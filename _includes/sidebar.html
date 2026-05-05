@@ -6,18 +6,40 @@
     <p class="site-university">{{ site.author.university }}</p>
     <p class="site-bio">{{ site.author.bio }}</p>
   </div>
-  
-  <nav class="nav-links">
-    {% for item in site.data.navigation %}
-      <a href="{{ item.link | relative_url }}" class="nav-link{% if page.url == item.link %} active{% endif %}">
-        {{ item.name }}
-      </a>
-    {% endfor %}
+
+  <nav class="sidebar-nav" aria-label="站点导航">
+    <div class="nav-section">
+      {% for item in site.data.navigation.primary %}
+        {% assign nav_active = false %}
+        {% if page.url == item.link %}
+          {% assign nav_active = true %}
+        {% elsif page.layout == 'post' and item.link == '/blog/' %}
+          {% assign nav_active = true %}
+        {% endif %}
+        <a href="{{ item.link | relative_url }}" class="nav-link{% if nav_active %} active{% endif %}">
+          {{ item.name }}
+        </a>
+      {% endfor %}
+    </div>
+
+    {% if site.data.navigation.secondary and site.data.navigation.secondary.size > 0 %}
+    <div class="nav-section">
+      {% for item in site.data.navigation.secondary %}
+        {% assign nav_active = false %}
+        {% if page.url == item.link %}
+          {% assign nav_active = true %}
+        {% endif %}
+        <a href="{{ item.link | relative_url }}" class="nav-link{% if nav_active %} active{% endif %}">
+          {{ item.name }}
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
   </nav>
 
   <div class="social-links">
     {% if site.author.github %}
-      <a href="https://github.com/{{ site.author.github }}" class="social-icon" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="https://github.com/{{ site.author.github }}" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
     {% endif %}
     {% if site.author.email %}
       <a href="mailto:{{ site.author.email }}" class="social-icon"><i class="fas fa-envelope"></i></a>

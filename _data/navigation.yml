@@ -1,4 +1,9 @@
-- name: About
-  link: /
-- name: Blog
-  link: /blog/
+# 主导航（侧栏优先展示）
+primary:
+  - name: Blog
+    link: /blog/
+
+# 次要链接（置于 Blog 下方）
+secondary:
+  - name: About Me
+    link: /
