@@ -1,0 +1,63 @@
+---
+layout: default
+title: About Me
+permalink: /about/
+---
+
+<div class="home">
+  <h1>About Me</h1>
+  <p>Hello! 我是<strong>{{ site.author.name }}</strong>，目前就读于云南大学计算机科学与技术专业硕士。本科期间积极参加学科竞赛与科研项目，曾获百度之星程序设计大赛、蓝桥杯等奖项，具备扎实的工程实践能力。研究方向涵盖计算机视觉、自然语言处理与多模态大语言模型，对 AI Agent 与 Vibe Coding 有浓厚兴趣。</p>
+
+  <h2>Education</h2>
+  <ul>
+    <li>
+      <strong>硕士 · 计算机科学与技术</strong>（2026 - 至今）<br>
+      云南大学
+    </li>
+    <li>
+      <strong>学士 · 智能科学与技术</strong>（2022 - 2026）<br>
+      云南大学
+    </li>
+  </ul>
+
+  <h2>Research Interests</h2>
+  <ul>
+    <li>自然语言处理（NLP）</li>
+    <li>计算机视觉（CV）</li>
+    <li>多模态大语言模型（Multimodal LLM）</li>
+    <li>AI Agent</li>
+    <li>Vibe Coding</li>
+  </ul>
+
+  <h2>Awards &amp; Certificates</h2>
+  <ul>
+    <li>🏆 <strong>百度之星·程序设计大赛</strong></li>
+    <li>🏆 <strong>全国大学生计算机挑战赛</strong></li>
+    <li>🏆 <strong>蓝桥杯全国软件和信息技术专业人才大赛</strong></li>
+    <li>📜 <strong>软件设计师（中级）</strong> — 全国计算机技术与软件专业技术资格考试</li>
+  </ul>
+
+  <h2>Projects</h2>
+  <ul>
+    <li>
+      <strong>基于 YOLOv7 模型的绝缘子缺陷检测</strong><br>
+      <span style="color:#666; font-size:0.92rem;">利用 YOLOv7 目标检测模型对输电线路绝缘子进行缺陷识别与定位，实现对破损、闪络等缺陷类型的自动化检测，提升电网巡检效率。</span>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <strong>基于 改进YOLOv8m 模型的绝缘子缺陷检测</strong><br>
+      <span style="color:#666; font-size:0.92rem;">基于YOLOv8m模型添加GAM注意力机制，绝缘子缺陷检测在mAP50上达到92.93（提升2.1%），mAP50-95上达到了0.7399（提升了4%）。</span>
+    </li>
+  </ul>
+  <h2>News</h2>
+  <ul>
+    {% for post in site.posts limit:5 %}
+    <li>
+      <strong>[{{ post.date | date: "%Y.%m" }}]</strong>
+      新文章：<a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+
+</div>

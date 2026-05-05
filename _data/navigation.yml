@@ -1,9 +1,9 @@
 # 主导航（侧栏优先展示）
 primary:
   - name: Blog
-    link: /blog/
+    link: /
 
 # 次要链接（置于 Blog 下方）
 secondary:
   - name: About Me
-    link: /
+    link: /about/

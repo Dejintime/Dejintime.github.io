@@ -1,25 +1,16 @@
 ---
-layout: default
-title: Blog
+layout: null
 permalink: /blog/
 ---
-
-<div class="blog-index">
-  <h1>Blog</h1>
-  
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li class="post-item">
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h2 class="post-title">
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        </h2>
-        {% if post.excerpt %}
-          <div class="post-excerpt">{{ post.excerpt }}</div>
-        {% endif %}
-      </li>
-    {% else %}
-      <p>No posts yet. Check back soon!</p>
-    {% endfor %}
-  </ul>
-</div>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url={{ '/' | relative_url }}">
+  <link rel="canonical" href="{{ '/' | absolute_url }}">
+  <title>Redirecting…</title>
+</head>
+<body>
+  <p>页面已迁移至首页，若未自动跳转请<a href="{{ '/' | relative_url }}">点击此处</a>。</p>
+</body>
+</html>

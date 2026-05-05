@@ -13,7 +13,7 @@
         {% assign nav_active = false %}
         {% if page.url == item.link %}
           {% assign nav_active = true %}
-        {% elsif page.layout == 'post' and item.link == '/blog/' %}
+        {% elsif page.layout == 'post' and item.link == '/' %}
           {% assign nav_active = true %}
         {% endif %}
         <a href="{{ item.link | relative_url }}" class="nav-link{% if nav_active %} active{% endif %}">
