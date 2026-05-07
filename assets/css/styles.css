@@ -219,6 +219,19 @@ article.post {
   }
 }
 
+/* 正文内小型示意图（如微调下游任务示意图） */
+.post-content img.img-small {
+  width: auto;
+  max-width: 420px;
+  height: auto;
+}
+
+@media (max-width: 440px) {
+  .post-content img.img-small {
+    max-width: 92%;
+  }
+}
+
 .post-content h2 {
   margin-top: 2.5rem;
   padding-bottom: 0.4rem;
