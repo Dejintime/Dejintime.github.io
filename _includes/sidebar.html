@@ -1,41 +1,11 @@
 <div class="sidebar">
   <div class="profile-container">
-    <!-- 换头像：将你的照片重命名为 profile.jpg 放入 assets/images/ 文件夹，然后把下面 src 改为 /assets/images/profile.jpg -->
-    <img src="{{ "/assets/images/profile.jpg" | relative_url }}" alt="{{ site.author.name }}" class="profile-pic">
+    <!-- 换头像：将你的照片重命名为 profile.jpeg 放入 assets/images/ 文件夹 -->
+    <img src="{{ "/assets/images/profile.jpeg" | relative_url }}" alt="{{ site.author.name }}" class="profile-pic">
     <h1 class="site-title">{{ site.author.name }}</h1>
     <p class="site-university">{{ site.author.university }}</p>
     <p class="site-bio">{{ site.author.bio }}</p>
   </div>
-
-  <nav class="sidebar-nav" aria-label="站点导航">
-    <div class="nav-section">
-      {% for item in site.data.navigation.primary %}
-        {% assign nav_active = false %}
-        {% if page.url == item.link %}
-          {% assign nav_active = true %}
-        {% elsif page.layout == 'post' and item.link == '/' %}
-          {% assign nav_active = true %}
-        {% endif %}
-        <a href="{{ item.link | relative_url }}" class="nav-link{% if nav_active %} active{% endif %}">
-          {{ item.name }}
-        </a>
-      {% endfor %}
-    </div>
-
-    {% if site.data.navigation.secondary and site.data.navigation.secondary.size > 0 %}
-    <div class="nav-section">
-      {% for item in site.data.navigation.secondary %}
-        {% assign nav_active = false %}
-        {% if page.url == item.link %}
-          {% assign nav_active = true %}
-        {% endif %}
-        <a href="{{ item.link | relative_url }}" class="nav-link{% if nav_active %} active{% endif %}">
-          {{ item.name }}
-        </a>
-      {% endfor %}
-    </div>
-    {% endif %}
-  </nav>
 
   <div class="social-links">
     {% if site.author.github %}

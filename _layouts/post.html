@@ -15,3 +15,49 @@ layout: default
     {{ content }}
   </div>
 </article>
+
+<script>
+  (function () {
+    var content = document.querySelector('.post-content');
+    var tocNav = document.getElementById('tocNav');
+    if (!content || !tocNav) return;
+
+    var headings = content.querySelectorAll('h1, h2, h3');
+    if (headings.length === 0) {
+      tocNav.innerHTML = '<p class="toc-empty">暂无目录</p>';
+      return;
+    }
+
+    tocNav.innerHTML = '';
+    var fragment = document.createDocumentFragment();
+
+    headings.forEach(function (h) {
+      if (!h.id) {
+        h.id = h.textContent.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^\w\u4e00-\u9fa5-]/g, '');
+      }
+      var a = document.createElement('a');
+      a.href = '#' + h.id;
+      a.textContent = h.textContent;
+      a.className = 'toc-link toc-' + h.tagName.toLowerCase();
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById(h.id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      fragment.appendChild(a);
+    });
+    tocNav.appendChild(fragment);
+
+    var allLinks = tocNav.querySelectorAll('a');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          allLinks.forEach(function (a) { a.classList.remove('active'); });
+          var active = tocNav.querySelector('a[href="#' + entry.target.id + '"]');
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-8% 0px -80% 0px', threshold: 0 });
+
+    headings.forEach(function (h) { if (h.id) observer.observe(h); });
+  })();
+</script>

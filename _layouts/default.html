@@ -15,15 +15,70 @@
 </head>
 <body>
 
-  <div class="wrapper">
+  <!-- Top Navigation -->
+  <header class="topnav">
+    <a class="topnav-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <nav class="topnav-links">
+      {% for item in site.data.navigation.primary %}
+        {% assign nav_active = false %}
+        {% if page.url == item.link %}
+          {% assign nav_active = true %}
+        {% elsif page.layout == 'post' and item.link == '/' %}
+          {% assign nav_active = true %}
+        {% endif %}
+        <a href="{{ item.link | relative_url }}" class="topnav-link{% if nav_active %} active{% endif %}">{{ item.name }}</a>
+      {% endfor %}
+      {% for item in site.data.navigation.secondary %}
+        {% assign nav_active = false %}
+        {% if page.url == item.link %}
+          {% assign nav_active = true %}
+        {% endif %}
+        <a href="{{ item.link | relative_url }}" class="topnav-link{% if nav_active %} active{% endif %}">{{ item.name }}</a>
+      {% endfor %}
+    </nav>
+  </header>
+
+  <div class="wrapper" id="wrapper">
     <!-- Sidebar -->
-    {% include sidebar.html %}
-    
+    {% if page.layout == 'post' %}
+      {% include toc-sidebar.html %}
+    {% else %}
+      {% include sidebar.html %}
+    {% endif %}
+
+    <!-- Sidebar toggle button -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+      <i class="fas fa-chevron-left" id="toggleIcon"></i>
+    </button>
+
     <!-- Main Content -->
     <main class="content">
       {{ content }}
     </main>
   </div>
+
+  <script>
+    (function () {
+      var wrapper = document.getElementById('wrapper');
+      var toggleBtn = document.getElementById('sidebarToggle');
+      var icon = document.getElementById('toggleIcon');
+
+      if (localStorage.getItem('sidebarCollapsed') === 'true') {
+        wrapper.classList.add('sidebar-collapsed');
+        icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
+      }
+
+      toggleBtn.addEventListener('click', function () {
+        var collapsed = wrapper.classList.toggle('sidebar-collapsed');
+        localStorage.setItem('sidebarCollapsed', collapsed);
+        if (collapsed) {
+          icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
+        } else {
+          icon.classList.replace('fa-chevron-right', 'fa-chevron-left');
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>

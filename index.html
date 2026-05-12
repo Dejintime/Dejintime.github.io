@@ -4,7 +4,8 @@ title: Blog
 ---
 
 <div class="blog-index">
-  <h1>Blog</h1>
+
+  <h1 class="blog-page-title">Blog</h1>
 
   <ul class="post-list">
     {% for post in site.posts %}
@@ -16,9 +17,12 @@ title: Blog
         {% if post.excerpt %}
           <div class="post-excerpt">{{ post.excerpt }}</div>
         {% endif %}
+        <a class="post-read-more" href="{{ post.url | relative_url }}">阅读全文 <i class="fas fa-arrow-right"></i></a>
       </li>
     {% else %}
       <p>No posts yet. Check back soon!</p>
     {% endfor %}
   </ul>
+
 </div>
+
