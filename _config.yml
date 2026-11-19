@@ -5,8 +5,9 @@ url: "https://dejintime.github.io"
 baseurl: ""
 author:
   name: "Dejin"
-  email: "2404155822@qq.com"
+  email: "yangdejin@stu.ynu.edu.cn"
   github: "Dejintime"
+  orcid: "0009-0007-9776-1584"
   university: "Yunnan University"
   role: "Master’s student in CS"
   bio: "Interested in NLP, LLM post-training, reinforcement learning, and knowledge distillation."
@@ -22,7 +23,6 @@ kramdown:
 plugins:
   - jekyll-sitemap
   - jekyll-gist
-  - jekyll-feed
   - jemoji
 
 # Exclude from processing
