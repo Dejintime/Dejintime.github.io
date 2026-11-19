@@ -240,7 +240,7 @@ a:hover {
 
 .recent-posts,
 .education-list,
-.project-list,
+.work-list,
 .post-list {
   margin: 0;
   padding: 0;
@@ -293,13 +293,12 @@ a:hover {
 }
 
 .education-list h3,
-.project-list h3 {
+.work-list h3 {
   margin: 0;
   font-size: 1rem;
 }
 
-.education-details,
-.project-list p {
+.education-details {
   margin: 0.15rem 0 0;
 }
 
@@ -310,8 +309,114 @@ a:hover {
   gap: 0.1rem 0.75rem;
 }
 
-.project-list li + li {
-  margin-top: 0.75rem;
+.work-list > li {
+  padding-block: 1rem;
+  border-top: 1px solid var(--rule);
+}
+
+.work-list > li:first-child {
+  padding-top: 0.75rem;
+}
+
+.work-entry--illustrated {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  align-items: center;
+  gap: 1.35rem;
+}
+
+.work-figure {
+  display: block;
+  background: #fff;
+  border: 1px solid var(--rule);
+  box-shadow: 0 3px 10px rgb(48 45 36 / 12%);
+}
+
+.work-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.work-content {
+  min-width: 0;
+}
+
+.work-heading {
+  line-height: 1.8;
+}
+
+.work-heading h3 {
+  display: inline;
+  color: #244f91;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+}
+
+.work-heading h3 a {
+  color: inherit;
+}
+
+.work-heading h3 a:hover {
+  color: var(--accent-hover);
+}
+
+.work-badge {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #073da8;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.4;
+  vertical-align: baseline;
+  white-space: nowrap;
+}
+
+.work-badge--ranking {
+  background: #8a5900;
+}
+
+.work-list p {
+  margin: 0.25rem 0 0;
+}
+
+.work-list .work-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 0 0 0.35rem;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.work-authors,
+.work-venue {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.work-venue {
+  font-style: italic;
+}
+
+.work-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1rem;
+  margin: 0.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.875rem;
+}
+
+.work-empty {
+  margin: 0;
+  padding-block: 0.75rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
 }
 
 .awards-list {
@@ -630,6 +735,11 @@ mjx-container[jax="CHTML"][display="true"] {
 }
 
 @media (max-width: 520px) {
+  .work-entry--illustrated {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
   .post-list li {
     grid-template-columns: minmax(0, 1fr);
     row-gap: 0.25rem;

@@ -1,11 +1,11 @@
 - name: About Me
   section: about
-- name: Recent Posts
-  section: recent-posts
+- name: Recent Work
+  section: recent-work
 - name: Education
   section: education
-- name: Projects
-  section: projects
+- name: Recent Posts
+  section: recent-posts
 - name: Awards
   section: awards
 - name: Blog

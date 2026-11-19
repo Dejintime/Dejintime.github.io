@@ -1,0 +1,27 @@
+# 近期成果，按从新到旧的顺序添加。只有 title 必填，其余字段可省略。
+# 可以按下面的示例继续添加；未发表时省略 url 和 links。
+# - title: "论文或成果标题"
+#   type: "Publication"
+#   year: 2026
+#   authors: "作者列表"
+#   venue: "期刊 / 会议名称"
+#   description: "一句话介绍主要贡献（可选）"
+#   image: "/assets/images/论文配图.png"
+#   image_alt: "配图说明"
+#   url: "https://doi.org/替换为真实DOI"
+#   badges:
+#     - label: "会议名称 年份"
+#     - label: "CCF-C"
+#       style: "ranking"
+#   links:
+#     - label: "Paper"
+#       url: "https://doi.org/替换为真实DOI"
+#     - label: "Code"
+#       url: "https://github.com/替换为真实仓库"
+- title: "Fine-Grained Human Value Detection and Value-Aligned Response Generation Based on MoCo-SCL and GRPO"
+  image: "/assets/images/moco-scl-grpo-framework.png"
+  image_alt: "Two-task framework: MoCo-SCL for fine-grained human value detection and GRPO for value-aligned response generation."
+  badges:
+    - label: "NLPCC 2026"
+    - label: "CCF-C"
+      style: "ranking"

@@ -9,22 +9,45 @@ layout: default
   <p>I started this blog to document what I learn and share the interesting things I come across along the way.</p>
 </section>
 
-<section class="home-section" id="recent-posts" aria-labelledby="recent-posts-title">
+<section class="home-section" id="recent-work" lang="en" aria-labelledby="recent-work-title">
   <div class="section-header">
-    <h2 id="recent-posts-title">Recent Posts</h2>
-    <a href="{{ '/blog/' | relative_url }}">查看全部文章</a>
+    <h2 id="recent-work-title">Recent Work</h2>
   </div>
-  {% if site.posts.size > 0 %}
-    <ul class="recent-posts">
-      {% for post in site.posts limit:5 %}
-        <li>
-          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>
-          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+  {% if site.data.recent_work.size > 0 %}
+    <ul class="work-list">
+      {% for work in site.data.recent_work %}
+        <li class="work-entry{% if work.image %} work-entry--illustrated{% endif %}">
+          {% if work.image %}
+            <a class="work-figure" href="{{ work.image | relative_url | escape }}" aria-label="View full-size diagram for {{ work.title | escape }}">
+              <img src="{{ work.image | relative_url | escape }}" alt="{{ work.image_alt | default: work.title | escape }}" loading="lazy" decoding="async">
+            </a>
+          {% endif %}
+          <div class="work-content">
+            {% if work.type or work.year %}
+              <p class="work-meta">{% if work.type %}<span>{{ work.type | escape }}</span>{% endif %}{% if work.year %}<span>{{ work.year | escape }}</span>{% endif %}</p>
+            {% endif %}
+            <div class="work-heading">
+              <h3>{% if work.url %}<a href="{{ work.url | relative_url | escape }}">{{ work.title | escape }}</a>{% else %}{{ work.title | escape }}{% endif %}</h3>
+              {% for badge in work.badges %}
+                <span class="work-badge{% if badge.style == 'ranking' %} work-badge--ranking{% endif %}">{{ badge.label | escape }}</span>
+              {% endfor %}
+            </div>
+            {% if work.authors %}<p class="work-authors">{{ work.authors | escape }}</p>{% endif %}
+            {% if work.venue %}<p class="work-venue">{{ work.venue | escape }}</p>{% endif %}
+            {% if work.description %}<p class="work-description">{{ work.description | escape }}</p>{% endif %}
+            {% if work.links.size > 0 %}
+              <ul class="work-links" aria-label="Resources for {{ work.title | escape }}">
+                {% for link in work.links %}
+                  <li><a href="{{ link.url | relative_url | escape }}">{{ link.label | escape }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
         </li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>暂无文章。</p>
+    <p class="work-empty">Publications and recent research highlights will be shared here.</p>
   {% endif %}
 </section>
 
@@ -50,20 +73,23 @@ layout: default
   </ol>
 </section>
 
-<section class="home-section" id="projects" lang="en" aria-labelledby="projects-title">
+<section class="home-section" id="recent-posts" aria-labelledby="recent-posts-title">
   <div class="section-header">
-    <h2 id="projects-title">Projects</h2>
+    <h2 id="recent-posts-title">Recent Posts</h2>
+    <a href="{{ '/blog/' | relative_url }}">查看全部文章</a>
   </div>
-  <ul class="project-list">
-    <li>
-      <h3>Insulator Defect Detection with YOLOv7</h3>
-      <p>Used YOLOv7 to detect and localize defects in transmission-line insulators, including breakage and signs of flashover, to support routine inspections.</p>
-    </li>
-    <li>
-      <h3>Insulator Defect Detection with GAM-Enhanced YOLOv8m</h3>
-      <p>Integrated a GAM attention module into YOLOv8m. The enhanced model achieved an mAP@50 of 92.93% (up 2.1%) and an mAP@50:95 of 0.7399 (up 4%).</p>
-    </li>
-  </ul>
+  {% if site.posts.size > 0 %}
+    <ul class="recent-posts">
+      {% for post in site.posts limit:5 %}
+        <li>
+          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>暂无文章。</p>
+  {% endif %}
 </section>
 
 <section class="home-section" id="awards" lang="en" aria-labelledby="awards-title">
