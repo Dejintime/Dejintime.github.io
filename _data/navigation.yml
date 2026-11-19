@@ -1,9 +1,12 @@
-# 主导航（侧栏优先展示）
-primary:
-  - name: Blog
-    link: /
-
-# 次要链接（置于 Blog 下方）
-secondary:
-  - name: About Me
-    link: /about/
+- name: About Me
+  section: about
+- name: Recent Posts
+  section: recent-posts
+- name: Education
+  section: education
+- name: Projects
+  section: projects
+- name: Awards
+  section: awards
+- name: Blog
+  link: /blog/

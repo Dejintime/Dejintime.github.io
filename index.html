@@ -1,28 +1,79 @@
 ---
 layout: default
-title: Blog
 ---
 
-<div class="blog-index">
+<section class="home-intro" id="about" lang="en" aria-labelledby="about-title">
+  <h1 id="about-title">About Me</h1>
+  <p>I am {{ site.author.name | escape }}, a master’s student in Computer Science and Technology at <strong>Yunnan University</strong>. I also completed my undergraduate studies there, majoring in Intelligent Science and Technology.</p>
+  <p>My research interests include natural language processing, post-training for large language models, reinforcement learning, and knowledge distillation.</p>
+  <p>I started this blog to document what I learn and share the interesting things I come across along the way.</p>
+</section>
 
-  <h1 class="blog-page-title">Blog</h1>
+<section class="home-section" id="recent-posts" aria-labelledby="recent-posts-title">
+  <div class="section-header">
+    <h2 id="recent-posts-title">Recent Posts</h2>
+    <a href="{{ '/blog/' | relative_url }}">查看全部文章</a>
+  </div>
+  {% if site.posts.size > 0 %}
+    <ul class="recent-posts">
+      {% for post in site.posts limit:5 %}
+        <li>
+          <time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: '%Y.%m.%d' }}</time>
+          <a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>暂无文章。</p>
+  {% endif %}
+</section>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li class="post-item">
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-        <h2 class="post-title">
-          <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        </h2>
-        {% if post.excerpt %}
-          <div class="post-excerpt">{{ post.excerpt }}</div>
-        {% endif %}
-        <a class="post-read-more" href="{{ post.url | relative_url }}">阅读全文 <i class="fas fa-arrow-right"></i></a>
-      </li>
-    {% else %}
-      <p>No posts yet. Check back soon!</p>
-    {% endfor %}
+<section class="home-section" id="education" lang="en" aria-labelledby="education-title">
+  <div class="section-header">
+    <h2 id="education-title">Education</h2>
+  </div>
+  <ol class="education-list" aria-label="Education, most recent first">
+    <li>
+      <h3>{{ site.author.university | escape }}</h3>
+      <p class="education-details">
+        <span>Master’s in Computer Science and Technology</span>
+        <span class="education-dates">2026 – Present</span>
+      </p>
+    </li>
+    <li>
+      <h3>{{ site.author.university | escape }}</h3>
+      <p class="education-details">
+        <span>Bachelor’s in Intelligent Science and Technology</span>
+        <span class="education-dates">2022 – 2026</span>
+      </p>
+    </li>
+  </ol>
+</section>
+
+<section class="home-section" id="projects" lang="en" aria-labelledby="projects-title">
+  <div class="section-header">
+    <h2 id="projects-title">Projects</h2>
+  </div>
+  <ul class="project-list">
+    <li>
+      <h3>Insulator Defect Detection with YOLOv7</h3>
+      <p>Used YOLOv7 to detect and localize defects in transmission-line insulators, including breakage and signs of flashover, to support routine inspections.</p>
+    </li>
+    <li>
+      <h3>Insulator Defect Detection with GAM-Enhanced YOLOv8m</h3>
+      <p>Integrated a GAM attention module into YOLOv8m. The enhanced model achieved an mAP@50 of 92.93% (up 2.1%) and an mAP@50:95 of 0.7399 (up 4%).</p>
+    </li>
   </ul>
+</section>
 
-</div>
-
+<section class="home-section" id="awards" lang="en" aria-labelledby="awards-title">
+  <div class="section-header">
+    <h2 id="awards-title">Awards &amp; Certificates</h2>
+  </div>
+  <ul class="awards-list">
+    <li>Baidu Star Programming Contest</li>
+    <li>National Computer Competition for Colleges and Universities</li>
+    <li>Lanqiao Cup National Software and Information Technology Professionals Competition</li>
+    <li>Software Designer (Intermediate Level) · National Professional Qualification Examination for Computer Technology and Software</li>
+  </ul>
+</section>

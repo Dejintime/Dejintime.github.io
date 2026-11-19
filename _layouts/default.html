@@ -1,84 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
-  <meta name="description" content="{{ site.description }}">
-  
-  <link rel="stylesheet" href="{{ "/assets/css/styles.css" | relative_url }}?v={{ site.time | date: '%s' }}">
+  <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
+  <meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}?v={{ site.time | date: '%s' }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  {% if site.kramdown.math_engine == 'mathjax' %}
-  {% include mathjax.html %}
+  {% feed_meta %}
+  {% if page.layout == 'post' and site.kramdown.math_engine == 'mathjax' %}
+    {% include mathjax.html %}
   {% endif %}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">跳到正文</a>
 
-  <!-- Top Navigation -->
-  <header class="topnav">
-    <a class="topnav-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <nav class="topnav-links">
-      {% for item in site.data.navigation.primary %}
-        {% assign nav_active = false %}
-        {% if page.url == item.link %}
-          {% assign nav_active = true %}
-        {% elsif page.layout == 'post' and item.link == '/' %}
-          {% assign nav_active = true %}
-        {% endif %}
-        <a href="{{ item.link | relative_url }}" class="topnav-link{% if nav_active %} active{% endif %}">{{ item.name }}</a>
-      {% endfor %}
-      {% for item in site.data.navigation.secondary %}
-        {% assign nav_active = false %}
-        {% if page.url == item.link %}
-          {% assign nav_active = true %}
-        {% endif %}
-        <a href="{{ item.link | relative_url }}" class="topnav-link{% if nav_active %} active{% endif %}">{{ item.name }}</a>
-      {% endfor %}
-    </nav>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="site-brand" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <nav class="site-nav" aria-label="主导航">
+        {% for item in site.data.navigation %}
+          {% assign nav_active = false %}
+          {% if page.url == item.link or page.layout == 'post' and item.link == '/blog/' %}
+            {% assign nav_active = true %}
+          {% endif %}
+          {% if item.section %}
+            {% if page.url == '/' %}
+              {% assign href = item.section | prepend: '#' %}
+            {% else %}
+              {% assign href = '/' | relative_url | append: '#' | append: item.section %}
+            {% endif %}
+          {% else %}
+            {% assign href = item.link | relative_url %}
+          {% endif %}
+          <a href="{{ href }}"{% if nav_active %} aria-current="{% if page.url == item.link %}page{% else %}true{% endif %}"{% endif %}>{{ item.name }}</a>
+        {% endfor %}
+      </nav>
+    </div>
   </header>
 
-  <div class="wrapper" id="wrapper">
-    <!-- Sidebar -->
+  <div class="site-layout{% if page.layout == 'post' %} site-layout-post{% endif %}">
     {% if page.layout == 'post' %}
       {% include toc-sidebar.html %}
     {% else %}
       {% include sidebar.html %}
     {% endif %}
 
-    <!-- Sidebar toggle button -->
-    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
-      <i class="fas fa-chevron-left" id="toggleIcon"></i>
-    </button>
-
-    <!-- Main Content -->
-    <main class="content">
+    <main class="site-main" id="main-content" tabindex="-1">
       {{ content }}
     </main>
   </div>
 
-  <script>
-    (function () {
-      var wrapper = document.getElementById('wrapper');
-      var toggleBtn = document.getElementById('sidebarToggle');
-      var icon = document.getElementById('toggleIcon');
-
-      if (localStorage.getItem('sidebarCollapsed') === 'true') {
-        wrapper.classList.add('sidebar-collapsed');
-        icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
-      }
-
-      toggleBtn.addEventListener('click', function () {
-        var collapsed = wrapper.classList.toggle('sidebar-collapsed');
-        localStorage.setItem('sidebarCollapsed', collapsed);
-        if (collapsed) {
-          icon.classList.replace('fa-chevron-left', 'fa-chevron-right');
-        } else {
-          icon.classList.replace('fa-chevron-right', 'fa-chevron-left');
-        }
-      });
-    })();
-  </script>
-
+  <footer class="site-footer">
+    <small>© {{ site.time | date: '%Y' }} {{ site.author.name }}</small>
+    <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
+  </footer>
 </body>
 </html>

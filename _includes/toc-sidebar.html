@@ -1,13 +1,7 @@
-<div class="sidebar toc-sidebar">
-  <div class="toc-header">
-    <a class="toc-back" href="{{ '/' | relative_url }}">
-      <i class="fas fa-arrow-left"></i> 返回博客
-    </a>
-  </div>
-  <div class="toc-container">
-    <h3 class="toc-title"><i class="fas fa-list-ul"></i> 目录</h3>
-    <nav class="toc-nav" id="tocNav">
-      <p class="toc-empty">加载中…</p>
-    </nav>
-  </div>
-</div>
+<aside class="post-sidebar" aria-label="文章导航">
+  <a class="blog-back" href="{{ '/blog/' | relative_url }}">返回博客</a>
+  <details class="post-toc" id="post-toc" hidden>
+    <summary>文章目录</summary>
+    <nav class="toc-nav" aria-label="文章目录"></nav>
+  </details>
+</aside>

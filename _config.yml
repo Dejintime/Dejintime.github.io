@@ -8,7 +8,8 @@ author:
   email: "2404155822@qq.com"
   github: "Dejintime"
   university: "Yunnan University"
-  bio: "Passionate about NLP and Vibe Coding."
+  role: "Master’s student in CS"
+  bio: "Interested in NLP, LLM post-training, reinforcement learning, and knowledge distillation."
 
 # Build settings
 markdown: kramdown

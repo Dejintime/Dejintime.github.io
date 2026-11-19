@@ -1,18 +1,20 @@
-<div class="sidebar">
-  <div class="profile-container">
-    <!-- 换头像：将你的照片重命名为 profile.jpeg 放入 assets/images/ 文件夹 -->
-    <img src="{{ "/assets/images/profile.jpeg" | relative_url }}" alt="{{ site.author.name }}" class="profile-pic">
-    <h1 class="site-title">{{ site.author.name }}</h1>
-    <p class="site-university">{{ site.author.university }}</p>
-    <p class="site-bio">{{ site.author.bio }}</p>
+<aside class="profile" aria-label="博主信息">
+  <div class="profile-identity">
+    <img class="profile-photo" src="{{ '/assets/images/profile.jpeg' | relative_url }}?v=2" alt="{{ site.author.name | escape }}" width="168" height="168">
+    <div>
+      <p class="profile-name">{{ site.author.name }}</p>
+      <p class="profile-affiliation">{{ site.author.university }}</p>
+      <p class="profile-role" lang="en">{{ site.author.role | escape }}</p>
+    </div>
   </div>
-
-  <div class="social-links">
-    {% if site.author.github %}
-      <a href="https://github.com/{{ site.author.github }}" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-    {% endif %}
+  <p class="profile-bio" lang="en">{{ site.author.bio | escape }}</p>
+  <ul class="profile-links">
     {% if site.author.email %}
-      <a href="mailto:{{ site.author.email }}" class="social-icon"><i class="fas fa-envelope"></i></a>
+      <li><a href="mailto:{{ site.author.email }}"><i class="fa-regular fa-envelope" aria-hidden="true"></i> Email</a></li>
     {% endif %}
-  </div>
-</div>
+    {% if site.author.github %}
+      <li><a href="https://github.com/{{ site.author.github }}"><i class="fa-brands fa-github" aria-hidden="true"></i> GitHub</a></li>
+    {% endif %}
+    <li><a href="{{ '/feed.xml' | relative_url }}"><i class="fa-solid fa-rss" aria-hidden="true"></i> RSS</a></li>
+  </ul>
+</aside>
