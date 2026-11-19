@@ -3,15 +3,15 @@ layout: default
 ---
 
 <section class="home-intro" id="about" lang="en" aria-labelledby="about-title">
-  <h1 id="about-title">About Me</h1>
+  <h1 id="about-title"><span aria-hidden="true">👋</span> About Me</h1>
   <p>I am {{ site.author.name | escape }}, a master’s student in Computer Science and Technology at <strong>Yunnan University</strong>. I also completed my undergraduate studies there, majoring in Intelligent Science and Technology.</p>
   <p>My research interests include natural language processing, post-training for large language models, reinforcement learning, and knowledge distillation.</p>
   <p>I started this blog to document what I learn and share the interesting things I come across along the way.</p>
 </section>
 
-<section class="home-section" id="recent-work" lang="en" aria-labelledby="recent-work-title">
+<section class="home-section" id="publication" lang="en" aria-labelledby="publication-title">
   <div class="section-header">
-    <h2 id="recent-work-title">Recent Work</h2>
+    <h2 id="publication-title"><span aria-hidden="true">📄</span> Publication</h2>
   </div>
   {% if site.data.recent_work.size > 0 %}
     <ul class="work-list">
@@ -53,7 +53,7 @@ layout: default
 
 <section class="home-section" id="education" lang="en" aria-labelledby="education-title">
   <div class="section-header">
-    <h2 id="education-title">Education</h2>
+    <h2 id="education-title"><span aria-hidden="true">🎓</span> Education</h2>
   </div>
   <ol class="education-list" aria-label="Education, most recent first">
     <li>
@@ -75,7 +75,7 @@ layout: default
 
 <section class="home-section" id="recent-posts" aria-labelledby="recent-posts-title">
   <div class="section-header">
-    <h2 id="recent-posts-title">Recent Posts</h2>
+    <h2 id="recent-posts-title"><span aria-hidden="true">✍️</span> Recent Posts</h2>
     <a href="{{ '/blog/' | relative_url }}">查看全部文章</a>
   </div>
   {% if site.posts.size > 0 %}
@@ -94,7 +94,7 @@ layout: default
 
 <section class="home-section" id="awards" lang="en" aria-labelledby="awards-title">
   <div class="section-header">
-    <h2 id="awards-title">Awards &amp; Certificates</h2>
+    <h2 id="awards-title"><span aria-hidden="true">🏆</span> Awards &amp; Certificates</h2>
   </div>
   <ul class="awards-list">
     <li>Baidu Star Programming Contest</li>

@@ -33,7 +33,7 @@
           {% else %}
             {% assign href = item.link | relative_url %}
           {% endif %}
-          <a href="{{ href }}"{% if nav_active %} aria-current="{% if page.url == item.link %}page{% else %}true{% endif %}"{% endif %}>{{ item.name }}</a>
+          <a href="{{ href }}"{% if nav_active %} aria-current="{% if page.url == item.link %}page{% else %}true{% endif %}"{% endif %}>{% if item.emoji %}<span aria-hidden="true">{{ item.emoji }}</span> {% endif %}{{ item.name }}</a>
         {% endfor %}
       </nav>
     </div>

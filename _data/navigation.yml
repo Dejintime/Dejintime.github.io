@@ -1,12 +1,18 @@
 - name: About Me
+  emoji: "👋"
   section: about
-- name: Recent Work
-  section: recent-work
+- name: Publication
+  emoji: "📄"
+  section: publication
 - name: Education
+  emoji: "🎓"
   section: education
 - name: Recent Posts
+  emoji: "✍️"
   section: recent-posts
 - name: Awards
+  emoji: "🏆"
   section: awards
 - name: Blog
+  emoji: "📚"
   link: /blog/
